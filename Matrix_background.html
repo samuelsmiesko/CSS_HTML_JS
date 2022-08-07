@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<style>
+
+br{
+ content: "A" !important;
+ display: block !important;
+ margin-bottom: 1.4em !important;
+}
+body{
+ background-color: black;
+}
+
+.footer{    
+
+display: flex;
+justify-content: space-around;
+width: 100%;
+}
+
+.column{
+   margin-left: ;
+}
+
+p{  
+ font-size: 1.4vw;
+ filter: blur(1px);
+ color: rgb(89, 161, 71);
+}
+
+</style>
+
+<div class="footer">
+   <div  class="column" id="pos1">
+     <p id="number1"></p> 
+   </div>
+   <div  class="column" id="pos2">
+     <p id="number2"></p> 
+   </div>
+   <div  class="column" id="pos3">
+     <p id="number3"></p> 
+   </div>
+    <div  class="column" id="pos4">
+     <p id="number4"></p> 
+   </div>
+   <div  class="column" id="pos5">
+     <p id="number5"></p> 
+   </div>
+   <div  class="column" id="pos6">
+     <p id="number6"></p> 
+   </div>
+</div>
+<script>
+
+ const listofnumbers = [0,1,1,1,1,0,0,0,0,0,1,1,0];
+ let text = "";
+
+ function shuffle(){
+    for (var i = 0; i < listofnumbers.length; i++) {
+       var j = Math.floor(Math.random() * 2);  
+        listofnumbers[i]=j;
+     }
+ }
+
+ function sleep(ms) {
+       return new Promise(resolve => setTimeout(resolve, ms));
+ }
+ async function Update(){
+   for (var i = 0; i < Infinity; i++) {
+     shuffle()
+     text = "";
+     for (var i = 0; i < listofnumbers.length; i++) {
+       text+=(listofnumbers[i]+ "<br />");
+     }
+        for (var z = 1; z < 7; z++){
+            function myFunction(y,b) {
+             document.getElementById("pos"+z).style.marginLeft = y +"0%";
+             document.getElementById("number"+z).style.filter = "blur("+b+"px)";
+             document.getElementById("number"+z).innerHTML = text;
+             }
+             myFunction(
+             Math.floor((Math.random() * 2)+0),
+             Math.floor(Math.random() * 10),           
+         );
+        }
+     await sleep(1000);
+   }
+ }
+ Update()   
+
+
+</script>
+
+</body>
+</html>
